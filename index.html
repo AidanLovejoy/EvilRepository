@@ -1,32 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
     <head>
-        <script>
-    function changeColor() {
-        var element = document.getElementById("myText");
-        // Change color to a random hex code on click
-        element.style.color = '#' + Math.floor(Math.random()*16777215).toString(16);
-    }
-    </script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="style/search.css">
     </head>
-<body>
-    <p>Very Cool Website</p>
 
-    <h5>I just wanted to say that this is a very cool website</h5>
-    <h4>hi</h4>
-    <h3>hi</h3>
-    <h2>hu</h2>
-    <h1>hi</h1>
-    <h4 style="color:blue;">hi</h4>
-    <h3 style="font-family: wingdings, sans-serif;">HI</h3>
-    <h3 style="font-family: wingdings, sans-serif; color:blue;">HI</h3>
+    <body>
+        <div class="search">
+            <input type="text" class="input" placeholder="Search...">
+            <button class="btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        <script src="https://kit.fontawesome.com/c513779648.js" crossorigin="anonymous"></script>
+        <script src=script/search.js></script>
+    </body>
 
-     <p id="myText" onclick="changeColor()" style="cursor: pointer;">hi (Click me)</p>
-
-
-    <button style="background-color: blue; color: white;">hi</button>
-
-    <a href="https://www.example.com" class="button">hi</a>
-
-</body>
 </html>
