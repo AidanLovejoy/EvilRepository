@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+}
+
+
+
+.empty {
+    position: relative;
+    height: 45px;
+    width: 45px;
+    background: black;
+}
+
+.snake {
+    position: relative;
+    height: 45px;
+    width: 45px;
+    background: lime;
+}
+
+.apple {
+    position: relative;
+    height: 45px;
+    width: 45px;
+    background: red;
+}
+
+
+
+
+.container {
+     left-padding: 250px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+   box-sizing: border-box;
+}
+
