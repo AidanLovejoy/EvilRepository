@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    background: red;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+}
+
+.div {
+    position: relative;
+    height: 60px;
+    width: 45px;
+    background: blue;
+}
