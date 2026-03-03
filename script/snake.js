@@ -19,7 +19,7 @@ function addSnake(nextSpot) {
 
 function spawnApple()
 {
-    
+    panels math.random
 }
 document.addEventListener('keydown', (event) => {
     if (event.key === 'w') {
