@@ -9,10 +9,10 @@ snakeSpots = [];
 function addSnake(nextSpot) {
     for (let i = 0; i <= length; i++)
     {
-        if (snakeSpots[i - 1])
-        {
+
+        
             snakeSpots[i] = snakeSpots[i - 1];
-        }
+
     }
     snakeSpots[length + 1] = null;
     snakeSpots[0] = nextSpot;
