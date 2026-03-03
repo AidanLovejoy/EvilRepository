@@ -26,9 +26,12 @@ function random(min, max) {
 function spawnApple()
 {
     spawnAttempt = random(0,100)
-    if (panels[spawnAttempt].classList.add("apple");)
-    panels[random(0,100)].classList.add("apple");
+    if (!panels[spawnAttempt].classList.contains("snake"))
+    {
+        panels[spawnAttempt].classList.add("apple");
+    }
 }
+
 document.addEventListener('keydown', (event) => {
     if (event.key === 'w') {
         if (direction != 10 && moved == false) {
@@ -59,6 +62,12 @@ function runGame() {
     head += direction;
 
     panels[head - 1].classList.add("snake");
+    if (panels[head - 1].classList.contains("apple"))
+    {
+         panels[head - 1].classList.remove("apple");
+         length += 1;
+         spawnApple();
+    }
     addSnake(head - 1);
 
     if (snakeSpots[length]) {
@@ -66,9 +75,4 @@ function runGame() {
     }
 
     moved = false;
-
-    if (head == 100) {
-        length = 0;
-    }
-    spawnApple();
 }
