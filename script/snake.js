@@ -63,4 +63,5 @@ function runGame() {
     if (head == 100) {
         length = 0;
     }
+    spawnApple();
 }
