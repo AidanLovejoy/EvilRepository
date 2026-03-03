@@ -17,10 +17,17 @@ function addSnake(nextSpot) {
     snakeSpots[0] = nextSpot;
 }
 
+function random(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //
+}
+
 function spawnApple()
 {
-    randomNum = (Math.random() * (101));
-    panels[randomNum].classList.add("apple");
+    spawnAttempt = random(0,100)
+    if (panels[spawnAttempt].classList.add("apple");)
+    panels[random(0,100)].classList.add("apple");
 }
 document.addEventListener('keydown', (event) => {
     if (event.key === 'w') {
