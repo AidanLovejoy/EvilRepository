@@ -19,7 +19,8 @@ function addSnake(nextSpot) {
 
 function spawnApple()
 {
-    panels math.random
+    randomNum = (Math.random() * (101));
+    panels[randomNum].classList.add("apple");
 }
 document.addEventListener('keydown', (event) => {
     if (event.key === 'w') {
