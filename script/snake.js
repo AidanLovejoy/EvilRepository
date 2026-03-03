@@ -18,37 +18,44 @@ function addSnake(nextSpot) {
 }
 
 document.addEventListener('keydown', (event) => {
-    if (moved == false) {
-        moved == true;
-        if (event.key === 'w') {
-            if (direction != 10) {
-                direction = -10;
-            }
-        } else if (event.key === 's') {
-            if (direction != -10) {
-                direction = 10;
-            }
-        } else if (event.key === 'd') {
-            if (direction != -1) {
-                direction = 1;
-            }
-        } else if (event.key === 'a') {
-            if (direction != 1) {
-                direction = -1;
-            }
+    if (event.key === 'w') {
+        if (direction != 10 && moved == false) {
+            moved = true;
+            direction = -10;
+        }
+    } else if (event.key === 's') {
+        if (direction != -10 && moved == false) {
+            moved = true;
+            direction = 10;
+        }
+    } else if (event.key === 'd') {
+        if (direction != -1 && moved == false) {
+            moved = true;
+            direction = 1;
+        }
+    } else if (event.key === 'a') {
+        if (direction != 1 && moved == false) {
+            moved = true;
+            direction = -1;
         }
     }
+
 });
 
 
 function runGame() {
+    head += direction;
+
     panels[head - 1].classList.add("snake");
     addSnake(head - 1);
-
-    head += direction;
 
     if (snakeSpots[length]) {
         panels[snakeSpots[length]].classList.remove("snake");
     }
 
+    moved = false;
+
+    if (head == 100) {
+        length = 0;
+    }
 }
