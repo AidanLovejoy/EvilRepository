@@ -3,6 +3,7 @@ int = setInterval(runGame, 300);
 
 head = 40;
 length = 3;
+alive = true;;
 
 direction = 1;
 moved = false;
@@ -57,10 +58,13 @@ document.addEventListener('keydown', (event) => {
 
 });
 
-
 function runGame() {
-    head += direction;
+    if (!alive)
+    {
+        return;
+    }
 
+    head += direction;
     panels[head - 1].classList.add("snake");
     if (panels[head - 1].classList.contains("apple"))
     {
@@ -68,11 +72,19 @@ function runGame() {
          length += 1;
          spawnApple();
     }
+
+    if (panels[head - 1 + direction].classList.contains("snake"))
+    {
+         alive = false;
+    }
+
     addSnake(head - 1);
 
     if (snakeSpots[length]) {
         panels[snakeSpots[length]].classList.remove("snake");
     }
+
+
 
     moved = false;
 }
