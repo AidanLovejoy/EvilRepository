@@ -17,6 +17,10 @@ function addSnake(nextSpot) {
     snakeSpots[0] = nextSpot;
 }
 
+function spawnApple()
+{
+    
+}
 document.addEventListener('keydown', (event) => {
     if (event.key === 'w') {
         if (direction != 10 && moved == false) {
