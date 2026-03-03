@@ -50,5 +50,5 @@ function runGame() {
     if (snakeSpots[length]) {
         panels[snakeSpots[length]].classList.remove("snake");
     }
-    moved = false;
+
 }
