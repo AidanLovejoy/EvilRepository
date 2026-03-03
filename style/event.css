@@ -3,10 +3,14 @@
 }
 
 .rectangle {
-    height: 40px;
-    width: 100px;
+    height: 60px;
+    width: 250px;
     background: red;
     margin: 3px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 body {
@@ -15,4 +19,28 @@ body {
     align-items: center;
     justify-content: center;
     margin: 0;
+}
+
+.click {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+}
+
+.move {
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+}
+
+.hover {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+}
+
+.dblclick {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
 }
