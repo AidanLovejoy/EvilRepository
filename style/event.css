@@ -1,6 +1,18 @@
+*  {
+    box-sizing: border-box;
+}
+
 .rectangle {
-    height: 20px;
-    width: 50px;
+    height: 40px;
+    width: 100px;
     background: red;
     margin: 3px;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
 }
