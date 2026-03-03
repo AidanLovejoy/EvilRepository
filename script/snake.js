@@ -59,6 +59,11 @@ document.addEventListener('keydown', (event) => {
 });
 
 function runGame() {
+    if (panels[head - 1 + direction].classList.contains("snake"))
+    {
+         alive = false;
+    }
+
     if (!alive)
     {
         return;
@@ -73,10 +78,6 @@ function runGame() {
          spawnApple();
     }
 
-    if (panels[head - 1 + direction].classList.contains("snake"))
-    {
-         alive = false;
-    }
 
     addSnake(head - 1);
 
