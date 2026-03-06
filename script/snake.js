@@ -1,10 +1,12 @@
 panels = document.querySelectorAll('.empty');
 dieText = document.querySelector('.die');
+winText = document.querySelector('.win');
 int = setInterval(runGame, 300);
 
 head = 41;
 length = 3;
-alive = true;;
+alive = true;
+win = false;
 
 direction = 1;
 moved = false;
@@ -77,12 +79,19 @@ function runGame() {
     if (length == 5)
     {
         alive = false;
-        dieText.style.text = 'You win bro'
     }
 
     if (!alive)
     {
-        dieText.style.fontSize = '20px'
+        if (win)
+        {
+            winText.style.fontSize = '20px'
+        }
+        else
+        {
+            dieText.style.fontSize = '20px'
+        }
+
         return;
     }
 
