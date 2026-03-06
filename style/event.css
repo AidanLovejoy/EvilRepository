@@ -57,3 +57,28 @@ body {
         transform: rotate(360deg);
     }
 }
+
+.bg {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../images/download.jpg');
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+    opacity: 0
+}
+
+@keyframes Jumpscare {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.AHH {
+    animation: Jumpscare 2s linear;
+    
+}

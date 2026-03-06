@@ -8,6 +8,7 @@ body {
     align-items: center;
     height: 100vh;
     justify-content: center;
+    margin: 0;
 }
 
 
@@ -42,10 +43,15 @@ body {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
    box-sizing: border-box;
+
+   position: absolute;
 }
 
+
 .die {
-    left: 50px;
+    position: absolute;
+    color: blue;
+    font-size: 0px;
 }
 
 

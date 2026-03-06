@@ -1,7 +1,8 @@
 panels = document.querySelectorAll('.empty');
+dieText = document.querySelector('.die');
 int = setInterval(runGame, 300);
 
-head = 40;
+head = 41;
 length = 3;
 alive = true;;
 
@@ -31,25 +32,29 @@ function spawnApple()
     {
         panels[spawnAttempt].classList.add("apple");
     }
+    else
+    {
+        spawnApple();
+    }
 }
 
 document.addEventListener('keydown', (event) => {
-    if (event.key === 'w') {
+    if (event.key === 'ArrowUp') {
         if (direction != 10 && moved == false) {
             moved = true;
             direction = -10;
         }
-    } else if (event.key === 's') {
+    } else if (event.key === 'ArrowDown') {
         if (direction != -10 && moved == false) {
             moved = true;
             direction = 10;
         }
-    } else if (event.key === 'd') {
+    } else if (event.key === 'ArrowRight') {
         if (direction != -1 && moved == false) {
             moved = true;
             direction = 1;
         }
-    } else if (event.key === 'a') {
+    } else if (event.key === 'ArrowLeft') {
         if (direction != 1 && moved == false) {
             moved = true;
             direction = -1;
@@ -59,13 +64,25 @@ document.addEventListener('keydown', (event) => {
 });
 
 function runGame() {
-    if (panels[head - 1 + direction].classList.contains("snake"))
+    if (panels[head - 1 + direction] && panels[head - 1 + direction].classList.contains("snake"))
     {
          alive = false;
     }
 
+    if (head + direction < 0 || head + direction > 100 || (head%10 == 1 && direction == -1) ||  (head%10 == 0 && direction == 1))
+    {
+        alive = false;
+    }
+
+    if (length == 5)
+    {
+        alive = false;
+        dieText.style.text = 'You win bro'
+    }
+
     if (!alive)
     {
+        dieText.style.fontSize = '20px'
         return;
     }
 
