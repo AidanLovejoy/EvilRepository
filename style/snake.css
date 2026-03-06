@@ -54,4 +54,10 @@ body {
     font-size: 0px;
 }
 
+.win {
+    position: absolute;
+    color: blue;
+    font-size: 0px;
+}
+
 
