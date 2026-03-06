@@ -22,20 +22,16 @@ function addSnake(nextSpot) {
 }
 
 function random(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //
 }
 
-function spawnApple()
-{
-    spawnAttempt = random(0,100)
-    if (!panels[spawnAttempt].classList.contains("snake"))
-    {
+function spawnApple() {
+    spawnAttempt = random(0, 100)
+    if (!panels[spawnAttempt].classList.contains("snake")) {
         panels[spawnAttempt].classList.add("apple");
-    }
-    else
-    {
+    } else {
         spawnApple();
     }
 }
@@ -67,30 +63,23 @@ document.addEventListener('keydown', (event) => {
 
 function runGame() {
     spawnApple();
-    if (panels[head - 1 + direction] && panels[head - 1 + direction].classList.contains("snake"))
-    {
-         alive = false;
-    }
-
-    if (head + direction < 0 || head + direction > 100 || (head%10 == 1 && direction == -1) ||  (head%10 == 0 && direction == 1))
-    {
+    if (panels[head - 1 + direction] && panels[head - 1 + direction].classList.contains("snake")) {
         alive = false;
     }
 
-    if (length == 100)
-    {
+    if (head + direction < 0 || head + direction > 100 || (head % 10 == 1 && direction == -1) || (head % 10 == 0 && direction == 1)) {
+        alive = false;
+    }
+
+    if (length == 100) {
         alive = false;
         win = true;
     }
 
-    if (!alive)
-    {
-        if (win)
-        {
+    if (!alive) {
+        if (win) {
             winText.style.fontSize = '20px'
-        }
-        else
-        {
+        } else {
             dieText.style.fontSize = '20px'
         }
 
@@ -99,11 +88,10 @@ function runGame() {
 
     head += direction;
     panels[head - 1].classList.add("snake");
-    if (panels[head - 1].classList.contains("apple"))
-    {
-         panels[head - 1].classList.remove("apple");
-         length += 1;
-         spawnApple();
+    if (panels[head - 1].classList.contains("apple")) {
+        panels[head - 1].classList.remove("apple");
+        length += 1;
+        spawnApple();
     }
 
 
