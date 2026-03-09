@@ -61,7 +61,6 @@ function delayKey(key, mode) {
     keyPress(inputQueue[0]);
     inputQueue[inputsQueued] = 0;
 
-
     for (let i = 0; i <= inputsQueued; i++) {
         inputQueue[i] = inputQueue[i + 1];
     }
