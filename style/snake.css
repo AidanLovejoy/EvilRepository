@@ -20,13 +20,6 @@ body {
     background: black;
 }
 
-.snake {
-    position: relative;
-    height: 45px;
-    width: 45px;
-    background: lime;
-}
-
 .apple {
     position: relative;
     height: 45px;
@@ -34,8 +27,12 @@ body {
     background: red;
 }
 
-
-
+.snake {
+    position: relative;
+    height: 45px;
+    width: 45px;
+    background: lime;
+}
 
 .container {
      left-padding: 250px;

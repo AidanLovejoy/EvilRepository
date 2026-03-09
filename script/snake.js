@@ -28,12 +28,15 @@ function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min; //
 }
 
-function spawnApple() {
+function spawnApple(attemps) {
     spawnAttempt = random(0, 99)
-    if (!tiles[spawnAttempt].classList.contains("snake")) {
+    if (!tiles[spawnAttempt].classList.contains("snake") && !tiles[spawnAttempt].classList.contains("apple")) {
         tiles[spawnAttempt].classList.add("apple");
     } else {
-        spawnApple();
+        if (attemps == 100) {
+            return;
+        }
+        spawnApple(attemps + 1);
     }
 }
 
@@ -57,6 +60,25 @@ function keyPress(key) {
     }
 }
 
+function changeAllSqaures(mode)
+{
+    if (mode == 1)
+    {
+for (let i = 0; i <= 99; i++)
+    {
+        tiles[i].classList.remove("snake");
+        tiles[i].classList.remove("apple");
+    }
+    }
+    else
+    {
+        for (let i = 0; i <= 99; i++)
+    {
+        tiles[i].classList.add("snake");
+    }
+    }
+
+}
 function delayKey(key, mode) {
     keyPress(inputQueue[0]);
     inputQueue[inputsQueued] = 0;
@@ -75,13 +97,9 @@ document.addEventListener('keydown', (event) => {
 });
 
 function runGame() {
-    spawnApple();
-    spawnApple();
     if (inputQueue[0]) {
         delayKey(null, "use");
     }
-
-
 
     if (tiles[pos - 1 + direction] && tiles[pos - 1 + direction].classList.contains("snake")) {
         alive = false;
@@ -93,6 +111,8 @@ function runGame() {
 
     if (length >= 100) {
         winText.style.fontSize = '20px'
+
+        changeAllSqaures();
         return;
     }
 
@@ -106,7 +126,7 @@ function runGame() {
     if (tiles[pos - 1].classList.contains("apple")) {
         tiles[pos - 1].classList.remove("apple");
         length += 1;
-        spawnApple();
+        spawnApple(0);
     }
 
 
@@ -115,4 +135,6 @@ function runGame() {
     if (snakeTiles[length] || snakeTiles[length] == 0) {
         tiles[snakeTiles[length]].classList.remove("snake");
     }
+
+
 }
