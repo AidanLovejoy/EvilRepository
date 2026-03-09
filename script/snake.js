@@ -3,23 +3,23 @@ dieText = document.querySelector('.die');
 winText = document.querySelector('.win');
 int = setInterval(runGame, 300);
 
-head = 41;
+pos = 41;
 length = 3;
 alive = true;
 win = false;
 
 direction = 1;
 
-snakeSpots = [];
-inputChain = [];
-inputsChained = 0;
+snakeTiles = [];
+inputQueue = [];
+inputsQueued = 0;
 
 function addSnake(nextSpot) {
     for (let i = length; i >= 0; i--) {
-        snakeSpots[i] = snakeSpots[i - 1];
+        snakeTiles[i] = snakeTiles[i - 1];
     }
-    snakeSpots[length + 1] = null;
-    snakeSpots[0] = nextSpot;
+    snakeTiles[length + 1] = null;
+    snakeTiles[0] = nextSpot;
 }
 
 function random(min, max) {
@@ -57,36 +57,38 @@ function keyPress(key) {
     }
 }
 
-function runKey() {
-    keyPress(inputChain[0]);
-    inputChain[inputsChained] = 0;
+function delayKey(key, mode) {
+    keyPress(inputQueue[0]);
+    inputQueue[inputsQueued] = 0;
 
 
-    for (let i = 0; i <= inputsChained; i++) {
-        inputChain[i] = inputChain[i + 1];
+    for (let i = 0; i <= inputsQueued; i++) {
+        inputQueue[i] = inputQueue[i + 1];
     }
 
-    inputsChained -= 1;
+    inputsQueued -= 1;
 }
 document.addEventListener('keydown', (event) => {
     if (event.key == "ArrowUp" || event.key == "ArrowDown" || event.key == "ArrowLeft" || event.key == "ArrowRight") {
-        inputChain[inputsChained] = key;
-        inputsChained += 1;
+        inputQueue[inputsQueued] = event.key;
+        inputsQueued += 1;
     }
 });
 
 function runGame() {
     spawnApple();
     spawnApple();
-    if (inputChain[0]) {
-        useKeyQueued();
+    if (inputQueue[0]) {
+        delayKey(null, "use");
     }
 
-    if (tiles[head - 1 + direction] && tiles[head - 1 + direction].classList.contains("snake")) {
+
+
+    if (tiles[pos - 1 + direction] && tiles[pos - 1 + direction].classList.contains("snake")) {
         alive = false;
     }
 
-    if (head + direction < 0 || head + direction > 100 || (head % 10 == 1 && direction == -1) || (head % 10 == 0 && direction == 1)) {
+    if (pos + direction < 0 || pos + direction > 100 || (pos % 10 == 1 && direction == -1) || (pos % 10 == 0 && direction == 1)) {
         alive = false;
     }
 
@@ -100,17 +102,18 @@ function runGame() {
         return;
     }
 
-    head += direction;
-    tiles[head - 1].classList.add("snake");
-    if (tiles[head - 1].classList.contains("apple")) {
-        tiles[head - 1].classList.remove("apple");
+    pos += direction;
+    tiles[pos - 1].classList.add("snake");
+    if (tiles[pos - 1].classList.contains("apple")) {
+        tiles[pos - 1].classList.remove("apple");
         length += 1;
         spawnApple();
     }
 
-    addSnake(head - 1);
 
-    if (snakeSpots[length] || snakeSpots[length] == 0) {
-        tiles[snakeSpots[length]].classList.remove("snake");
+    addSnake(pos - 1);
+
+    if (snakeTiles[length] || snakeTiles[length] == 0) {
+        tiles[snakeTiles[length]].classList.remove("snake");
     }
 }
