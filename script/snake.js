@@ -9,9 +9,10 @@ alive = true;
 win = false;
 
 direction = 1;
-moved = false;
 
 snakeSpots = [];
+inputChain = [];
+inputsChained = 0;
 
 function addSnake(nextSpot) {
     for (let i = length; i >= 0; i--) {
@@ -28,7 +29,7 @@ function random(min, max) {
 }
 
 function spawnApple() {
-    spawnAttempt = random(0, 100)
+    spawnAttempt = random(0, 99)
     if (!panels[spawnAttempt].classList.contains("snake")) {
         panels[spawnAttempt].classList.add("apple");
     } else {
@@ -36,33 +37,67 @@ function spawnApple() {
     }
 }
 
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowUp') {
-        if (direction != 10 && moved == false) {
-            moved = true;
+function keyPress(key)
+{
+    if (key === 'ArrowUp') {
+        if (direction != 10) {
             direction = -10;
         }
-    } else if (event.key === 'ArrowDown') {
-        if (direction != -10 && moved == false) {
-            moved = true;
+    } else if (key === 'ArrowDown') {
+        if (direction != -10) {
             direction = 10;
         }
-    } else if (event.key === 'ArrowRight') {
-        if (direction != -1 && moved == false) {
-            moved = true;
+    } else if (key === 'ArrowRight') {
+        if (direction != -1) {
             direction = 1;
         }
-    } else if (event.key === 'ArrowLeft') {
-        if (direction != 1 && moved == false) {
-            moved = true;
+    } else if (key === 'ArrowLeft') {
+        if (direction != 1) {
             direction = -1;
         }
     }
+}
 
+function delayKey(key, mode)
+{
+    if (mode == "add")
+    {
+
+            inputChain[inputsChained] = key;
+            inputsChained += 1;
+
+    }
+
+    if (mode == "use")
+    {
+        keyPress(inputChain[0]);
+        inputChain[inputsChained] = 0;
+
+
+        for (let i = 0; i <= inputsChained; i++) {
+            inputChain[i] = inputChain[i + 1];
+        }
+
+        inputsChained -= 1;
+    }
+}
+document.addEventListener('keydown', (event) => {
+    if (event.key == "ArrowUp" || event.key == "ArrowDown" || event.key == "ArrowLeft" || event.key == "ArrowRight")
+    {
+        delayKey(event.key, "add");
+    }
 });
 
 function runGame() {
     spawnApple();
+    spawnApple();
+    if (inputChain[0])
+    {
+        delayKey(null, "use");
+    }
+
+
+
     if (panels[head - 1 + direction] && panels[head - 1 + direction].classList.contains("snake")) {
         alive = false;
     }
@@ -71,18 +106,13 @@ function runGame() {
         alive = false;
     }
 
-    if (length == 100) {
-        alive = false;
-        win = true;
+    if (length >= 100) {
+        winText.style.fontSize = '20px'
+        return;
     }
 
     if (!alive) {
-        if (win) {
-            winText.style.fontSize = '20px'
-        } else {
-            dieText.style.fontSize = '20px'
-        }
-
+        dieText.style.fontSize = '20px'
         return;
     }
 
@@ -97,11 +127,7 @@ function runGame() {
 
     addSnake(head - 1);
 
-    if (snakeSpots[length]) {
+    if (snakeSpots[length] || snakeSpots[length] == 0) {
         panels[snakeSpots[length]].classList.remove("snake");
     }
-
-
-
-    moved = false;
 }
