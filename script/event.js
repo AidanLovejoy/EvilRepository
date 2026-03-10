@@ -13,13 +13,10 @@ clickBox.addEventListener('click', () => {
 
 
 dblclickBox.addEventListener('click', () => {
-    if (jumpscare.classList.contains("first"))
-    {
-jumpscare.classList.remove("first");
-    }
-    else
-    {
-            jumpscare.classList.toggle("AHH");
+    if (jumpscare.classList.contains("first")) {
+        jumpscare.classList.remove("first");
+    } else {
+        jumpscare.classList.toggle("AHH");
     }
 
 })
@@ -35,14 +32,14 @@ document.addEventListener('keydown', () => {
     if (event.key == 'ArrowRight') {
         x += 10;
     }
-     if (event.key == 'ArrowLeft') {
+    if (event.key == 'ArrowLeft') {
         x -= 10;
     }
 
     if (event.key == 'ArrowUp') {
         y -= 10;
     }
-     if (event.key == 'ArrowDown') {
+    if (event.key == 'ArrowDown') {
         y += 10;
     }
 
