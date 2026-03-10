@@ -1,12 +1,13 @@
 tiles = document.querySelectorAll('.empty');
 dieText = document.querySelector('.die');
 winText = document.querySelector('.win');
-int = setInterval(runGame, 300);
+scoreText = document.querySelector('.score');
+tutText = document.querySelector('.tutorial');
+int = setInterval(runGame, 250);
 
 pos = 41;
 length = 3;
 alive = true;
-win = false;
 
 direction = 1;
 
@@ -33,7 +34,7 @@ function spawnApple(attemps) {
     if (!tiles[spawnAttempt].classList.contains("snake") && !tiles[spawnAttempt].classList.contains("apple")) {
         tiles[spawnAttempt].classList.add("apple");
     } else {
-        if (attemps == 100) {
+        if (attemps == 1000) {
             return;
         }
         spawnApple(attemps + 1);
@@ -60,26 +61,40 @@ function keyPress(key) {
     }
 }
 
-function changeAllSqaures(mode)
-{
-    if (mode == 1)
-    {
-for (let i = 0; i <= 99; i++)
-    {
-        tiles[i].classList.remove("snake");
-        tiles[i].classList.remove("apple");
+function changeAllSqaures(mode) {
+    if (mode == 1) {
+        for (let i = 0; i <= 99; i++) {
+            tiles[i].classList.remove("snake");
+            tiles[i].classList.remove("apple");
+            if (i == 47) {
+                tiles[i].classList.add("apple");
+            }
+        }
+    } else {
+        for (let i = 0; i <= 99; i++) {
+            tiles[i].classList.add("snake");
+        }
     }
-    }
-    else
-    {
-        for (let i = 0; i <= 99; i++)
-    {
-        tiles[i].classList.add("snake");
-    }
-    }
-
 }
-function delayKey(key, mode) {
+
+function reset() {
+    changeAllSqaures(1);
+    pos = 41;
+    length = 3;
+    direction = 1;
+    alive = true;
+
+    winText.style.fontSize = '0px';
+    dieText.style.fontSize = '0px';
+    scoreText.textContent  = "Score: 0";
+
+    for (let i = 0; i <= 99; i++) {
+        snakeTiles[i] = 0;
+        inputQueue[i] = 0;
+    }
+}
+
+function delayKey() {
     keyPress(inputQueue[0]);
     inputQueue[inputsQueued] = 0;
 
@@ -94,11 +109,15 @@ document.addEventListener('keydown', (event) => {
         inputQueue[inputsQueued] = event.key;
         inputsQueued += 1;
     }
+
+    if (event.key == "r") {
+        reset();
+    }
 });
 
 function runGame() {
     if (inputQueue[0]) {
-        delayKey(null, "use");
+        delayKey();
     }
 
     if (tiles[pos - 1 + direction] && tiles[pos - 1 + direction].classList.contains("snake")) {
@@ -127,6 +146,11 @@ function runGame() {
         tiles[pos - 1].classList.remove("apple");
         length += 1;
         spawnApple(0);
+        scoreText.textContent = `Score: ${length-3}`;
+        if (length == 5)
+        {
+            tutText.textContent = "";
+        }
     }
 
 

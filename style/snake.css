@@ -57,4 +57,15 @@ body {
     font-size: 0px;
 }
 
+.tutorial {
+    position: absolute;
+    bottom: 40px;
+}
+
+.score {
+    position: absolute;
+    top: 50px;
+    left: 460px;
+}
+
 
