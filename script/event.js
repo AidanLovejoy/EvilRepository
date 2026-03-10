@@ -11,8 +11,17 @@ clickBox.addEventListener('click', () => {
 
 })
 
-dblclickBox.addEventListener('contextmenu', () => {
-    jumpscare.classList.toggle("AHH");
+
+dblclickBox.addEventListener('click', () => {
+    if (jumpscare.classList.contains("first"))
+    {
+jumpscare.classList.remove("first");
+    }
+    else
+    {
+            jumpscare.classList.toggle("AHH");
+    }
+
 })
 
 spinBox.addEventListener('click', () => {
