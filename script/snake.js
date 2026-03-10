@@ -113,6 +113,10 @@ document.addEventListener('keydown', (event) => {
     if (event.key == "r") {
         reset();
     }
+
+    if (event.key == "p") {
+        spawnApple();
+    }
 });
 
 function runGame() {
