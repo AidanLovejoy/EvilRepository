@@ -1,0 +1,15 @@
+*  {
+    box-sizing: border-box;
+}
+
+.player {
+    height: 60px;
+    width: 250px;
+    background: red;
+    margin: 3px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

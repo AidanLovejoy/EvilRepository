@@ -86,7 +86,7 @@ function reset() {
 
     winText.style.fontSize = '0px';
     dieText.style.fontSize = '0px';
-    scoreText.textContent  = "Score: 0";
+    scoreText.textContent = "Score: 0";
 
     for (let i = 0; i <= 99; i++) {
         snakeTiles[i] = 0;
@@ -151,18 +151,14 @@ function runGame() {
         length += 1;
         spawnApple(0);
         scoreText.textContent = `Score: ${length-3}`;
-        if (length == 5)
-        {
+        if (length == 5) {
             tutText.textContent = "";
         }
     }
-
 
     addSnake(pos - 1);
 
     if (snakeTiles[length] || snakeTiles[length] == 0) {
         tiles[snakeTiles[length]].classList.remove("snake");
     }
-
-
 }
